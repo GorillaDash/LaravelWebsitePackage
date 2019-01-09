@@ -1,0 +1,7 @@
+vendor
+composer.lock
+node_modules
+mix-manifest.json
+.rpt2_cache
+.idea
+.DS_Store

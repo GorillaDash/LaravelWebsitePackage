@@ -1,0 +1,48 @@
+{
+    "name": "gorilladash/laravelwebsite",
+    "description": "Connect GorillaDash And Laravel App Library",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Anthony Gherghetta",
+            "email": "anthony@gorilladash.com"
+        },
+        {
+            "name": "Casper Lai",
+            "email": "casper@gorilladash.com"
+        }
+    ],
+    "require": {
+        "eastwest/json": "^3.0",
+        "flugger/laravel-responder": "^3.0",
+        "guzzlehttp/guzzle": "^6.3",
+        "illuminate/support": "~5.7.0",
+        "rdx/graphql-query": "^1.0",
+        "spatie/laravel-responsecache": "^4.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "GorillaDash\\LaravelWebsite\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "GorillaDash\\LaravelWebsite\\LaravelWebsiteServiceProvider"
+            ],
+            "aliases": {
+                "GorillaDash": "GorillaDash\\LaravelWebsite\\Facade\\LaravelWebsiteFacade"
+            },
+            "dont-discover": []
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.4"
+    }
+}

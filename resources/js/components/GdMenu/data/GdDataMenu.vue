@@ -1,7 +1,7 @@
 <template>
   <div>
     <slot :results="results" />
-    <gd-component-dev-tool :results="results" />
+    <gd-component-dev-tool :results="results"></gd-component-dev-tool>
   </div>
 </template>
 
@@ -11,7 +11,6 @@
 import devtools from '@/mixins/devtools'
 
 export default {
-  name: 'GdDataMenu',
   mixins: [devtools],
   props: {
     name: {

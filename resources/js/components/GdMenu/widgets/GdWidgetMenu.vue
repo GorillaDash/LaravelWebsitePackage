@@ -1,27 +1,31 @@
 <template>
   <div class="w-100">
-    <gd-component-menu-list :menu="getMenu(value)">
-      <template
-        v-if="$scopedSlots.menu"
-        slot="menu"
-        slot-scope="props"
-      >
-        <slot
-          :item="props.item"
-          name="menu"
-        />
+    <gd-data-menu :name="name">
+      <template slot-scope="{ results }">
+        <gd-component-menu-list :menu="getMenu(results)">
+          <template
+            v-if="$scopedSlots.menu"
+            slot="menu"
+            slot-scope="props"
+          >
+            <slot
+              :item="props.item"
+              name="menu"
+            />
+          </template>
+          <template
+            v-if="$scopedSlots.items"
+            slot="items"
+            slot-scope="props"
+          >
+            <slot
+              :item="props.item"
+              name="items"
+            />
+          </template>
+        </gd-component-menu-list>
       </template>
-      <template
-        v-if="$scopedSlots.items"
-        slot="items"
-        slot-scope="props"
-      >
-        <slot
-          :item="props.item"
-          name="items"
-        />
-      </template>
-    </gd-component-menu-list>
+    </gd-data-menu>
   </div>
 </template>
 
@@ -29,10 +33,12 @@
 
 <script>
 import GdComponentMenuList from '@/components/GdMenu/components/GdComponentMenuList'
+import GdDataMenu from '@/components/GdMenu/data/GdDataMenu';
 
 export default {
   components: {
-    GdComponentMenuList
+    GdComponentMenuList,
+    GdDataMenu,
   },
   props: {
     name: {
@@ -45,29 +51,14 @@ export default {
       value: []
     }
   },
-  computed: {
-    params() {
-      if (this.name) {
-        return { name: this.name }
-      }
-
-      return {}
-    }
-  },
-  mounted() {
-    this.fetch()
-  },
   methods: {
     getMenu(result) {
       if (result.length > 0) {
         return result[0].menu_json
       }
 
-      return null
+      return [];
     },
-    async fetch() {
-      this.value = await this.$gorilladash.query('websiteMenus', this.params)
-    }
   }
 }
 </script>

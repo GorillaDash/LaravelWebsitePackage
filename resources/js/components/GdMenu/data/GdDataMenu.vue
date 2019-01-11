@@ -13,10 +13,26 @@ import devtools from '@/mixins/devtools'
 export default {
   name: 'GdDataMenu',
   mixins: [devtools],
+  props: {
+    name: {
+      type: String,
+      required: true
+    },
+  },
   data() {
     return {
       results: []
     }
+  },
+  computed: {
+    params() {
+      return {
+        name: this.name,
+      }
+    },
+  },
+  mounted() {
+    this.fetch()
   },
   methods: {
     async fetch() {

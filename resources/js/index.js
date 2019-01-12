@@ -14,7 +14,6 @@ if (typeof window !== 'undefined' && typeof window.Vue !== 'undefined') {
 export default function VueGorillaDash(Vue, options = {}) {
   library.add(faSearch, faSyncAlt, faEye)
   Vue.component('font-awesome-icon', FontAwesomeIcon)
-  Vue.use(require('bootstrap-vue'))
   const GorillaDash = new Gorilladash({
     devtool: options.devtool || false,
     axios: options.axios

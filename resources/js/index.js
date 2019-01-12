@@ -3,6 +3,7 @@ import { faSearch, faSyncAlt, faEye } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import * as components from './components'
 import Gorilladash from './gorilladash'
+import '../css/styles.css'
 
 export { Gorilladash }
 

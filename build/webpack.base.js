@@ -1,5 +1,6 @@
 const path = require('path')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
     mode: process.env.NODE_ENV || 'development',
@@ -24,11 +25,19 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: ['vue-style-loader', 'css-loader']
+                use: [
+                  MiniCssExtractPlugin.loader,
+                  'css-loader',
+                  'postcss-loader'
+                ]
             },
             {
                 test: /\.scss$/,
-                use: ['vue-style-loader', 'css-loader', 'sass-loader']
+                use: [
+                  'vue-style-loader',
+                  'css-loader',
+                  'sass-loader'
+                ]
             }
         ]
     },
@@ -38,5 +47,11 @@ module.exports = {
             '@': path.resolve(__dirname, '../resources/js')
         }
     },
-    plugins: [new VueLoaderPlugin()]
+    plugins: [
+      new VueLoaderPlugin(),
+      new MiniCssExtractPlugin({
+        filename: 'gorilladash.css',
+        chunkFilename: '[id].css'
+      }),
+    ]
 }

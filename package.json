@@ -8,10 +8,10 @@
   "module": "dist/gorilladash.min.js",
   "style": "dist/gorilladash.css",
   "scripts": {
-    "style": "tailwind build resources/css/styles.css -c build/tailwind.js -o dist/gorilladash.css",
-    "dev": "cross-env NODE_ENV=development webpack --config build/webpack.config.js && npm run style",
+    "dev": "cross-env NODE_ENV=development webpack --config build/webpack.config.js",
     "lint": "eslint resources/js --ext .js,.vue",
-    "prod": "cross-env NODE_ENV=production webpack --config build/webpack.config.js && npm run style",
+    "watch": "cross-env NODE_ENV=development webpack --config build/webpack.config.js --watch",
+    "prod": "cross-env NODE_ENV=production webpack --config build/webpack.config.js",
     "push": "npm run dev && yalc push",
     "linked": "yalc publish"
   },

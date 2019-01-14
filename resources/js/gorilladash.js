@@ -1,7 +1,8 @@
 import apiTypes from '../js/types/api'
 
 export default class Gorilladash {
-  STOREKEY = 'gd-config'
+
+  config = {}
 
   constructor({ config, axios, devtool = false}) {
     this.devtool = devtool
@@ -10,16 +11,15 @@ export default class Gorilladash {
   }
 
   async loadWebsiteConfig() {
-    const response = await this.$axios.get('/gorilladash/website/config')
-    if (typeof localStorage !== 'undefined') {
-      localStorage.setItem(this.STOREKEY, JSON.stringify(response.data))
+    if (this.configData) {
+      return this.configData
     }
-
-    return response.data
+    const response = await this.$axios.get('/gorilladash/website/config')
+    return this.configData = response.data
   }
 
   async setConfig(config) {
-    this.config = Object.assign({}, config, await this.loadWebsiteConfig())
+    Object.assign(this.config, config, await this.loadWebsiteConfig())
   }
 
   /**

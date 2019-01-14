@@ -17,9 +17,10 @@ export default function VueGorillaDash(Vue, options = {}) {
   Vue.component('font-awesome-icon', FontAwesomeIcon)
   const GorillaDash = new Gorilladash({
     devtool: options.devtool || false,
-    axios: options.axios
+    axios: options.axios,
+    config: options.config || {}
   })
-  GorillaDash.setConfig(options)
+
   Vue.prototype.$gorilladash = GorillaDash
   for (const key in components) {
     const component = components[key]

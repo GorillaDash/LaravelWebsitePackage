@@ -84,7 +84,7 @@
 
 <script>
 import collect from 'collect.js'
-import debounce from 'lodash/debounce'
+import debounce from 'lodash.debounce'
 
 export default {
   inheritAttrs: false,

@@ -1,11 +1,12 @@
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faSearch, faSyncAlt, faEye } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import gdMixins from '@/mixins/gdMixins'
 import * as components from './components'
 import Gorilladash from './gorilladash'
 import '../css/styles.css'
 
-export { Gorilladash }
+export { Gorilladash, gdMixins }
 
 // automatic install
 if (typeof window !== 'undefined' && typeof window.Vue !== 'undefined') {

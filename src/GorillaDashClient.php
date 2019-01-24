@@ -38,7 +38,6 @@ class GorillaDashClient
      */
     public function __construct(GorillaDashApp $app)
     {
-
         $this->stack = new HandlerStack();
         $this->stack->setHandler(\GuzzleHttp\choose_handler());
         $this->stack->push(Middleware::mapRequest(new AuthorizeMiddleware($app, $this)));

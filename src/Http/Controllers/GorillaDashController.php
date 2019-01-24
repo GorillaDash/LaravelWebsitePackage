@@ -3,6 +3,7 @@
 namespace GorillaDash\LaravelWebsite\Http\Controllers;
 
 use Exception;
+use GorillaDash\LaravelWebsite\Exceptions\GorillaDashEmptyResultException;
 use GorillaDash\LaravelWebsite\Exceptions\GorillaDashInvalidQueryException;
 use GorillaDash\LaravelWebsite\Queries\QueryFactory;
 use Illuminate\Http\Request;
@@ -21,14 +22,20 @@ class GorillaDashController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Throwable
      */
     public function query($query, Request $request): ?\Illuminate\Http\JsonResponse
     {
         try {
             $client = QueryFactory::create($query, $request->all());
-            return responder()->success($client->get())->respond(201);
+            $data = $client->get();
+            throw_if(\count($data) === 0 || !is_array($data), GorillaDashEmptyResultException::class);
+
+            return responder()->success($data)->respond(201);
         } catch (GorillaDashInvalidQueryException $ex) {
             return responder()->error($ex->getMessage())->respond(404);
+        } catch (GorillaDashEmptyResultException $ex) {
+            return responder()->error(404, 'no results')->respond(404);
         } catch (Exception $ex) {
             return responder()->error($ex->getMessage())->respond(500);
         }

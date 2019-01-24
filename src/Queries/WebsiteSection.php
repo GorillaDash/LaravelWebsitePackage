@@ -39,9 +39,9 @@ class WebsiteSection extends QueryAbstract
             'description',
             'media'
         );
-        $this->query->websiteSections->contents->media_collection->media->fields(
-            MediaSizeType::MEDIA_SIZES
-        );
+        $this->query->websiteSections->contents->media_collection->media->fields(array_merge(
+            ['alt_tag'], MediaSizeType::MEDIA_SIZES
+        ));
     }
 
     /**

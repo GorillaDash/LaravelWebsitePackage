@@ -17,11 +17,7 @@ class MediaSizeType
         'banner',
         'square',
         'rectangle',
-        'original',
         'original_cropped',
-        'gallery',
-        'main',
-        'team_members',
         'portrait',
     ];
 }

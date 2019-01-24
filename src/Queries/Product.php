@@ -2,6 +2,8 @@
 
 namespace GorillaDash\LaravelWebsite\Queries;
 
+use GorillaDash\LaravelWebsite\Types\MediaSizeType;
+
 /**
  * Class Product
  *
@@ -94,8 +96,7 @@ class Product extends QueryAbstract
         );
 
         $this->query->products->componentTypes->components->contents->media_collection->media->fields(
-            'original_cropped',
-            'banner'
+            MediaSizeType::MEDIA_SIZES
         );
 
         $this->query->products->product_custom_data->fields(
@@ -116,8 +117,7 @@ class Product extends QueryAbstract
         );
 
         $this->query->products->product_related_products->media_collection->media->fields(
-            'square',
-            'banner'
+            MediaSizeType::MEDIA_SIZES
         );
     }
 

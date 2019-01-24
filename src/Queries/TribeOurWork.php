@@ -2,6 +2,8 @@
 
 namespace GorillaDash\LaravelWebsite\Queries;
 
+use GorillaDash\LaravelWebsite\Types\MediaSizeType;
+
 /**
  * Class TribeOurWork
  *
@@ -33,8 +35,7 @@ class TribeOurWork extends Tribe
             'media'
         );
         $this->query->tribes->ourWorks->media_collection->media->fields(
-            'original_cropped',
-            'rectangle'
+            MediaSizeType::MEDIA_SIZES
         );
     }
 }

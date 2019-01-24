@@ -2,6 +2,8 @@
 
 namespace GorillaDash\LaravelWebsite\Queries;
 
+use GorillaDash\LaravelWebsite\Types\MediaSizeType;
+
 /**
  * Class WebsiteSection
  *
@@ -38,13 +40,7 @@ class WebsiteSection extends QueryAbstract
             'media'
         );
         $this->query->websiteSections->contents->media_collection->media->fields(
-            'thumbnail',
-            'banner',
-            'square',
-            'rectangle',
-            'original_cropped',
-            'portrait',
-            'alt_tag'
+            MediaSizeType::MEDIA_SIZES
         );
     }
 

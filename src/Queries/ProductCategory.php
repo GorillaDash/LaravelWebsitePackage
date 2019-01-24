@@ -2,6 +2,8 @@
 
 namespace GorillaDash\LaravelWebsite\Queries;
 
+use GorillaDash\LaravelWebsite\Types\MediaSizeType;
+
 /**
  * Class ProductCategory
  *
@@ -63,8 +65,7 @@ class ProductCategory extends QueryAbstract
         );
 
         $this->query->categories->componentTypes->components->contents->media_collection->media->fields(
-            'original_cropped',
-            'banner'
+            MediaSizeType::MEDIA_SIZES
         );
     }
 

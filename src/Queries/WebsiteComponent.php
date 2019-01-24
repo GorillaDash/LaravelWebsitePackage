@@ -2,6 +2,8 @@
 
 namespace GorillaDash\LaravelWebsite\Queries;
 
+use GorillaDash\LaravelWebsite\Types\MediaSizeType;
+
 /**
  * Class WebsiteComponent
  *
@@ -46,7 +48,7 @@ class WebsiteComponent extends QueryAbstract
             'media'
         );
         $this->query->websiteComponents->components->contents->media_collection->media->fields(
-            'banner'
+            MediaSizeType::MEDIA_SIZES
         );
     }
 

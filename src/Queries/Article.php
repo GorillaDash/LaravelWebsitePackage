@@ -2,6 +2,8 @@
 
 namespace GorillaDash\LaravelWebsite\Queries;
 
+use GorillaDash\LaravelWebsite\Types\MediaSizeType;
+
 /**
  * Class Article
  *
@@ -35,8 +37,7 @@ class Article extends QueryAbstract
             'media'
         );
         $this->query->articles->media_collection->media->fields(
-            'square',
-            'banner'
+            MediaSizeType::MEDIA_SIZES
         );
     }
 

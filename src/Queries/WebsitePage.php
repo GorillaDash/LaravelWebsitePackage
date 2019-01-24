@@ -2,6 +2,8 @@
 
 namespace GorillaDash\LaravelWebsite\Queries;
 
+use GorillaDash\LaravelWebsite\Types\MediaSizeType;
+
 /**
  * Class WebsitePage
  *
@@ -36,7 +38,7 @@ class WebsitePage extends QueryAbstract
             'name',
             'media'
         );
-        $this->query->websitePages->contents->media_collection->media->fields('square');
+        $this->query->websitePages->contents->media_collection->media->fields(MediaSizeType::MEDIA_SIZES);
     }
 
     /**

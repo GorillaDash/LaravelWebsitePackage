@@ -2,6 +2,8 @@
 
 namespace GorillaDash\LaravelWebsite\Queries;
 
+use GorillaDash\LaravelWebsite\Types\MediaSizeType;
+
 /**
  * Class TribeMedia
  *
@@ -25,9 +27,7 @@ class TribeMedia extends Tribe
             'media'
         );
         $this->query->tribes->media_collection->media->fields(
-            'banner',
-            'square',
-            'rectangle'
+            MediaSizeType::MEDIA_SIZES
         );
     }
 }

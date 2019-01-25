@@ -45,7 +45,7 @@
           </div>
         </div>
         <div class="border-t-2 border-grey"></div>
-        <div class="overflow-auto">
+        <div class="overflow-auto text-left">
           <pre>
             <code>
   {{ results }}

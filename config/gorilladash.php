@@ -25,6 +25,7 @@ return [
         'website_id' => env('GORILLADASH_WEBSITE_ID'),
         'api_access_token' => env('GORILLADASH_API_ACCESS_TOKEN'),
         'public_key' => env('MIX_GORILLADASH_PUBLIC_KEY'),
+        'google_map_key' => env('GORILLADASH_GOOGLE_MAP_KEY'),
     ],
 
 
@@ -74,5 +75,18 @@ return [
         'middleware' => [
             \Spatie\ResponseCache\Middlewares\CacheResponse::class,
         ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Storage
+    |--------------------------------------------------------------------------
+    |
+    | The storage configuration
+    |
+    */
+    'storage' => [
+        // google static map storage disk.
+        'google_map' => env('GOOGLE_MAP_STORAGE', 'public'),
     ],
 ];

@@ -18,6 +18,7 @@
         "flugger/laravel-responder": "^3.0",
         "guzzlehttp/guzzle": "^6.3",
         "illuminate/support": "~5.7.0",
+        "mastani/laravel-google-static-map": "^1.2",
         "rdx/graphql-query": "^1.0",
         "spatie/laravel-responsecache": "^4.4"
     },

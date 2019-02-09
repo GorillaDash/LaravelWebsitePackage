@@ -35,7 +35,7 @@ class ProductRange extends QueryAbstract
             'description',
             'page_heading',
             'page_sub_heading',
-            'path',
+            'path'
         );
     }
 

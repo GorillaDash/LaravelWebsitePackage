@@ -28,6 +28,12 @@
         type: Boolean,
         default() {
           return false;
+        },
+      },
+      includeProducts: {
+        type: Boolean,
+        default() {
+          return false;
         }
       }
     },
@@ -42,6 +48,7 @@
           slug: this.slug,
           includeComponents: this.includeComponents,
           includeRanges: this.includeRanges,
+          includeProducts: this.includeProducts,
         }
       }
     },

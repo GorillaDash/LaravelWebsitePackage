@@ -89,6 +89,9 @@ class ProductCategory extends QueryAbstract
         );
     }
 
+    /**
+     * Append product ranges
+     */
     private function appendRanges()
     {
         $this->query->categories->fields(
@@ -122,6 +125,42 @@ class ProductCategory extends QueryAbstract
     }
 
     /**
+     * Append products
+     */
+    private function appendProducts()
+    {
+        $this->query->categories->fields(
+            'products'
+        );
+
+        $this->query->categories->products->fields(
+            'name',
+            'menu_label',
+            'status',
+            'slug',
+            'heading',
+            'sub_heading',
+            'caption',
+            'description',
+            'meta',
+            'page_heading',
+            'page_sub_heading',
+            'path',
+            'url',
+            'media_collection'
+        );
+
+        $this->query->categories->products->media_collection->fields(
+            'name',
+            'media'
+        );
+
+        $this->query->categories->products->media_collection->media->fields(
+            MediaSizeType::MEDIA_SIZES
+        );
+    }
+
+    /**
      * Apply request params.
      */
     protected function applyRequestParams(): void
@@ -136,6 +175,10 @@ class ProductCategory extends QueryAbstract
 
         if ($this->getParam('includeRanges')) {
             $this->appendRanges();
+        }
+
+        if ($this->getParam('includeProducts')) {
+            $this->appendProducts();
         }
     }
 }

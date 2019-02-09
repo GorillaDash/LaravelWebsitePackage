@@ -1,35 +1,57 @@
 <template>
-  <div>{{ results }}</div>
+  <div>
+    <slot :results="results" />
+    <gd-component-dev-tool :results="results"></gd-component-dev-tool>
+  </div>
 </template>
 
 <style scoped></style>
 <script>
-export default {
-  props: {
-    tribeSlug: {
-      type: String,
-      required: true
-    }
-  },
-  data() {
-    return {
-      results: []
-    }
-  },
-  computed: {
-    params() {
+  import devtools from '@/mixins/devtools'
+
+  export default {
+    mixins: [devtools],
+    props: {
+      tribeSlug: {
+        type: String,
+        default() {
+          return null;
+        }
+      },
+      typeName: {
+        type: String,
+        default() {
+          return null;
+        }
+      },
+      orderBy: {
+        type: String,
+        default() {
+          return null;
+        }
+      }
+    },
+    data() {
       return {
-        slug: this.tribeSlug
+        results: []
+      }
+    },
+    computed: {
+      params() {
+        return {
+          slug: this.tribeSlug,
+          name: this.typeName,
+          orderBy: this.orderBy,
+        }
+      }
+    },
+    created() {
+      this.fetch()
+    },
+    methods: {
+      async fetch() {
+        this.results = await this.$gorilladash.query('tribes', this.params)
       }
     }
-  },
-  created() {
-    this.fetch()
-  },
-  methods: {
-    async fetch() {
-      this.results = await this.$gorilladash.query('tribes', this.params)
-    }
   }
-}
 </script>

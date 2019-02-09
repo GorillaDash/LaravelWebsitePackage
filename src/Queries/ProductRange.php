@@ -36,35 +36,6 @@ class ProductRange extends QueryAbstract
             'page_heading',
             'page_sub_heading',
             'path',
-            'componentTypes'
-        );
-
-        $this->query->ranges->componentTypes->fields(
-            'name',
-            'status',
-            'base_path',
-            'components'
-        );
-        $this->query->ranges->componentTypes->components->fields(
-            'name',
-            'slug',
-            'contents'
-        );
-
-        $this->query->ranges->componentTypes->components->contents->fields(
-            'name',
-            'type',
-            'value',
-            'media_collection'
-        );
-
-        $this->query->ranges->componentTypes->components->contents->media_collection->fields(
-            'name',
-            'media'
-        );
-
-        $this->query->ranges->componentTypes->components->contents->media_collection->media->fields(
-            MediaSizeType::MEDIA_SIZES
         );
     }
 
@@ -89,6 +60,81 @@ class ProductRange extends QueryAbstract
     }
 
     /**
+     * Append components
+     */
+    private function appendComponents()
+    {
+        $this->query->ranges->fields(
+            'componentTypes'
+        );
+
+        $this->query->ranges->componentTypes->fields(
+            'name',
+            'status',
+            'base_path',
+            'components'
+        );
+
+        $this->query->ranges->componentTypes->components->fields(
+            'name',
+            'slug',
+            'contents'
+        );
+
+        $this->query->ranges->componentTypes->components->contents->fields(
+            'name',
+            'type',
+            'value',
+            'media_collection'
+        );
+
+        $this->query->ranges->componentTypes->components->contents->media_collection->fields(
+            'name',
+            'media'
+        );
+
+        $this->query->ranges->componentTypes->components->contents->media_collection->media->fields(
+            MediaSizeType::MEDIA_SIZES
+        );
+    }
+
+    /**
+     * Append products
+     */
+    private function appendProducts()
+    {
+        $this->query->ranges->fields(
+            'products'
+        );
+
+        $this->query->ranges->products->fields(
+            'name',
+            'menu_label',
+            'status',
+            'slug',
+            'heading',
+            'sub_heading',
+            'caption',
+            'description',
+            'meta',
+            'page_heading',
+            'page_sub_heading',
+            'path',
+            'url',
+            'media_collection'
+        );
+
+        $this->query->ranges->products->media_collection->fields(
+            'name',
+            'media'
+        );
+
+        $this->query->ranges->products->media_collection->media->fields(
+            MediaSizeType::MEDIA_SIZES
+        );
+    }
+
+    /**
      * Apply request params.
      */
     protected function applyRequestParams(): void
@@ -99,6 +145,14 @@ class ProductRange extends QueryAbstract
 
         if ($onlyShop = $this->getParam('onlyShop')) {
             $this->setResultCount($onlyShop);
+        }
+
+        if ($this->getParam('includeComponents')) {
+            $this->appendComponents();
+        }
+
+        if ($this->getParam('includeProducts')) {
+            $this->appendProducts();
         }
     }
 }

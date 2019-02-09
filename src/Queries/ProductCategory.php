@@ -36,7 +36,26 @@ class ProductCategory extends QueryAbstract
             'meta',
             'page_heading',
             'page_sub_heading',
-            'path',
+            'path'
+        );
+    }
+
+    /**
+     * Add slug filter
+     *
+     * @param string $slug
+     */
+    private function setSlug(string $slug): void
+    {
+        $this->query->categories->attribute('slug', $slug);
+    }
+
+    /**
+     * Append components
+     */
+    private function appendComponents()
+    {
+        $this->query->categories->fields(
             'componentTypes'
         );
 
@@ -46,6 +65,7 @@ class ProductCategory extends QueryAbstract
             'base_path',
             'components'
         );
+
         $this->query->categories->componentTypes->components->fields(
             'name',
             'slug',
@@ -69,16 +89,37 @@ class ProductCategory extends QueryAbstract
         );
     }
 
-    /**
-     * Add slug filter
-     *
-     * @param string $slug
-     */
-    private function setSlug(string $slug): void
+    private function appendRanges()
     {
-        $this->query->categories->attribute('slug', $slug);
-    }
+        $this->query->categories->fields(
+            'product_ranges'
+        );
 
+        $this->query->categories->product_ranges->fields(
+            'name',
+            'menu_label',
+            'status',
+            'slug',
+            'heading',
+            'sub_heading',
+            'caption',
+            'description',
+            'page_heading',
+            'page_sub_heading',
+            'path',
+            'url',
+            'media_collection'
+        );
+
+        $this->query->categories->product_ranges->media_collection->fields(
+            'name',
+            'media'
+        );
+
+        $this->query->categories->product_ranges->media_collection->media->fields(
+            MediaSizeType::MEDIA_SIZES
+        );
+    }
 
     /**
      * Apply request params.
@@ -87,6 +128,14 @@ class ProductCategory extends QueryAbstract
     {
         if ($slug = $this->getParam('slug')) {
             $this->setSlug($slug);
+        }
+
+        if ($this->getParam('includeComponents')) {
+            $this->appendComponents();
+        }
+
+        if ($this->getParam('includeRanges')) {
+            $this->appendRanges();
         }
     }
 }

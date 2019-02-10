@@ -91,8 +91,8 @@ class Tribe extends QueryAbstract
     {
         $this->query->tribes->fields('contents');
         $this->query->tribes->contents->fields('name', 'type', 'value', 'media_collection');
-        $this->query->tribes->contents->media_collection('name', 'description', 'media');
-        $this->query->tribes->contents->media(MediaSizeType::MEDIA_SIZES);
+        $this->query->tribes->contents->media_collection->fields('name', 'description', 'media');
+        $this->query->tribes->contents->media_collection->media->fields(MediaSizeType::MEDIA_SIZES);
     }
 
     /**

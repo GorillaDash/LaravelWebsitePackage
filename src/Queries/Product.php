@@ -41,7 +41,8 @@ class Product extends QueryAbstract
             'componentTypes',
             'product_custom_data',
             'product_related_products',
-            'path'
+            'path',
+            'product_categories'
         );
 
         $this->query->products->product_type->fields(
@@ -59,64 +60,6 @@ class Product extends QueryAbstract
         );
 
         $this->query->products->media_collection->media->fields(
-            'original_cropped',
-            'banner',
-            'rectangle',
-            'square',
-            'tribes'
-        );
-
-        $this->query->products->media_collection->media->tribes->fields(
-            'name',
-            'slug'
-        );
-
-        $this->query->products->componentTypes->fields(
-            'name',
-            'status',
-            'base_path',
-            'components'
-        );
-        $this->query->products->componentTypes->components->fields(
-            'name',
-            'slug',
-            'contents'
-        );
-
-        $this->query->products->componentTypes->components->contents->fields(
-            'name',
-            'type',
-            'value',
-            'media_collection'
-        );
-
-        $this->query->products->componentTypes->components->contents->media_collection->fields(
-            'name',
-            'media'
-        );
-
-        $this->query->products->componentTypes->components->contents->media_collection->media->fields(
-            MediaSizeType::MEDIA_SIZES
-        );
-
-        $this->query->products->product_custom_data->fields(
-            'name',
-            'type',
-            'value'
-        );
-
-        $this->query->products->product_related_products->fields(
-            'name',
-            'slug',
-            'media_collection'
-        );
-
-        $this->query->products->product_related_products->media_collection->fields(
-            'name',
-            'media'
-        );
-
-        $this->query->products->product_related_products->media_collection->media->fields(
             MediaSizeType::MEDIA_SIZES
         );
     }
@@ -163,8 +106,92 @@ class Product extends QueryAbstract
             $this->setOnlyShop($onlyShop);
         }
 
-        if ($componentTypes = $this->getParam('componentTypes')) {
-            $this->setComponentTypeNames($componentTypes);
+        if ($this->getParam('includeMediaTribe')) {
+            $this->includeMediaTribe();
         }
+
+        if ($this->getParam('includeComponents')) {
+            $this->includeComponents();
+            if ($componentTypes = $this->getParam('componentTypes')) {
+                $this->setComponentTypeNames($componentTypes);
+            }
+        }
+
+        if ($this->getParam('includeRelatedProducts')) {
+            $this->includeRelatedProducts();
+        }
+    }
+
+    /**
+     *
+     */
+    private function includeMediaTribe()
+    {
+        $this->query->products->media_collection->media->fields('tribes');
+        $this->query->products->media_collection->media->tribes->fields(
+            'name',
+            'slug'
+        );
+    }
+
+    /**
+     *
+     */
+    private function includeComponents()
+    {
+        $this->query->products->componentTypes->fields(
+            'name',
+            'status',
+            'base_path',
+            'components'
+        );
+        $this->query->products->componentTypes->components->fields(
+            'name',
+            'slug',
+            'contents'
+        );
+
+        $this->query->products->componentTypes->components->contents->fields(
+            'name',
+            'type',
+            'value',
+            'media_collection'
+        );
+
+        $this->query->products->componentTypes->components->contents->media_collection->fields(
+            'name',
+            'media'
+        );
+
+        $this->query->products->componentTypes->components->contents->media_collection->media->fields(
+            MediaSizeType::MEDIA_SIZES
+        );
+    }
+
+    /**
+     *
+     */
+    private function includeRelatedProducts()
+    {
+        $this->query->products->product_custom_data->fields(
+            'name',
+            'type',
+            'value'
+        );
+
+        $this->query->products->product_related_products->fields(
+            'name',
+            'slug',
+            'media_collection'
+        );
+
+        $this->query->products->product_related_products->media_collection->fields(
+            'name',
+            'media'
+        );
+
+        $this->query->products->product_related_products->media_collection->media->fields(
+            MediaSizeType::MEDIA_SIZES
+        );
     }
 }

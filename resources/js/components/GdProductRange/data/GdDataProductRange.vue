@@ -40,8 +40,14 @@
         type: Boolean,
         default() {
           return false;
-        }
-      }
+        },
+      },
+      includeInventory: {
+        type: String,
+        default() {
+          return null;
+        },
+      },
     },
     data() {
       return {
@@ -55,6 +61,7 @@
           'result-count': this.resultCount,
           includeComponents: this.includeComponents,
           includeProducts: this.includeProducts,
+          includeInventory: this.includeInventory,
         }
       }
     },

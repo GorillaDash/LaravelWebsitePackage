@@ -34,8 +34,14 @@
         type: Boolean,
         default() {
           return false;
-        }
-      }
+        },
+      },
+      includeInventory: {
+        type: String,
+        default() {
+          return null;
+        },
+      },
     },
     data() {
       return {
@@ -49,6 +55,7 @@
           includeComponents: this.includeComponents,
           includeRanges: this.includeRanges,
           includeProducts: this.includeProducts,
+          includeInventory: this.includeInventory,
         }
       }
     },

@@ -40,7 +40,8 @@ class WebsiteSection extends QueryAbstract
             'media'
         );
         $this->query->websiteSections->contents->media_collection->media->fields(array_merge(
-            ['alt_tag'], MediaSizeType::MEDIA_SIZES
+            ['alt_tag'],
+            MediaSizeType::MEDIA_SIZES
         ));
     }
 

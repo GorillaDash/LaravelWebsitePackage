@@ -132,6 +132,14 @@ class ProductRange extends QueryAbstract
         $this->query->ranges->products->media_collection->media->fields(
             MediaSizeType::MEDIA_SIZES
         );
+
+        if ($includeInventory = $this->getParam('includeInventory')) {
+            $this->query->ranges->products->fields('inventories');
+            $this->query->ranges->products->inventories
+                ->fields('unit_price', 'quantity', 'variants', 'id', 'customData');
+            $this->query->ranges->products->inventories->customData->fields('name', 'type', 'value');
+            $this->query->ranges->products->inventories->attribute('slug', $includeInventory);
+        }
     }
 
     /**

@@ -158,6 +158,14 @@ class ProductCategory extends QueryAbstract
         $this->query->categories->products->media_collection->media->fields(
             MediaSizeType::MEDIA_SIZES
         );
+
+        if ($includeInventory = $this->getParam('includeInventory')) {
+            $this->query->categories->products->fields('inventories');
+            $this->query->categories->products->inventories
+                ->fields('unit_price', 'quantity', 'variants', 'id', 'customData');
+            $this->query->categories->products->inventories->customData->fields('name', 'type', 'value');
+            $this->query->categories->products->inventories->attribute('slug', $includeInventory);
+        }
     }
 
     /**

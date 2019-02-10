@@ -206,6 +206,7 @@ class Product extends QueryAbstract
     {
         $this->query->products->fields('inventories');
         $this->query->products->inventories->fields('unit_price', 'quantity', 'variants', 'id', 'customData');
+        $this->query->products->inventories->customData->fields('name', 'type', 'value');
         $this->query->products->inventories->attribute('slug', $inventoryTribeSlug);
     }
 }

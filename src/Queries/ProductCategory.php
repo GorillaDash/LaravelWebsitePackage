@@ -2,6 +2,8 @@
 
 namespace GorillaDash\LaravelWebsite\Queries;
 
+use Eastwest\Json\Json;
+use Exception;
 use GorillaDash\LaravelWebsite\Types\MediaSizeType;
 
 /**
@@ -159,13 +161,28 @@ class ProductCategory extends QueryAbstract
             MediaSizeType::MEDIA_SIZES
         );
 
-        if ($includeInventory = $this->getParam('includeInventory')) {
-            dump($includeInventory);
-            $this->query->categories->products->fields('inventories');
-            $this->query->categories->products->inventories
-                ->fields('unit_price', 'quantity', 'variants', 'id', 'customData');
-            $this->query->categories->products->inventories->customData->fields('name', 'type', 'value');
-            $this->query->categories->products->inventories->attribute('slug', $includeInventory);
+        try {
+            if ($includeInventory = $this->getParam('includeInventory')) {
+                $decode = Json::decode($includeInventory, true);
+                if (\count($decode) > 0) {
+                    $this->query->categories->products->fields('inventories');
+                    $this->query->categories->products->inventories
+                        ->fields('unit_price', 'quantity', 'variants', 'id', 'customData');
+                    $this->query->categories->products->inventories->customData->fields('name', 'type', 'value');
+
+                    if ($tribeSlug = data_get($decode, 'tribe_slug')) {
+                        $this->query->categories->products->inventories->attribute('tribe_slug', $tribeSlug);
+                    }
+                    if ($tribeId = data_get($decode, 'tribe_id')) {
+                        $this->query->categories->products->inventories->attribute('tribe_id', $tribeId);
+                    }
+                    if ($id = data_get($decode, 'id')) {
+                        $this->query->categories->products->inventories->attribute('id', $id);
+                    }
+                }
+            }
+        } catch (Exception $ex) {
+            return;
         }
     }
 

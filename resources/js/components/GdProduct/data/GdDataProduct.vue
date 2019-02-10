@@ -38,9 +38,15 @@
       },
       componentTypes: {
         type: String,
+        default() {
+          return null;
+        },
       },
-      inventoryTribeSlug: {
-        type: String,
+      includeInventory: {
+        type: Object,
+        default() {
+          return null;
+        },
       },
     },
     data() {
@@ -56,7 +62,7 @@
           includeMediaTribe: this.includeMediaTribe,
           includeComponents: this.includeComponents,
           includeRelatedProducts: this.includeRelatedProducts,
-          inventoryTribeSlug: this.inventoryTribeSlug,
+          includeInventory: this.includeInventory,
         }
       }
     },

@@ -39,7 +39,7 @@
       includeInventory: {
         type: Object,
         default() {
-          return {};
+          return null;
         },
       },
     },

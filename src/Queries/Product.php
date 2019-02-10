@@ -2,6 +2,8 @@
 
 namespace GorillaDash\LaravelWebsite\Queries;
 
+use Eastwest\Json\Json;
+use Exception;
 use GorillaDash\LaravelWebsite\Types\MediaSizeType;
 
 /**
@@ -88,7 +90,7 @@ class Product extends QueryAbstract
      * Add component name type filter
      * @param array $componentTypes
      */
-    private function setComponentTypeNames(array $componentTypes)
+    private function setComponentTypeNames(array $componentTypes): void
     {
         $this->query->products->componentTypes->attribute('name', $componentTypes);
     }
@@ -121,15 +123,15 @@ class Product extends QueryAbstract
             $this->includeRelatedProducts();
         }
 
-        if ($inventoryTribeSlug = $this->getParam('inventoryTribeSlug')) {
-            $this->includeInventory($inventoryTribeSlug);
+        if ($includeInventory = $this->getParam('includeInventory')) {
+            $this->includeInventory($includeInventory);
         }
     }
 
     /**
      *
      */
-    private function includeMediaTribe()
+    private function includeMediaTribe(): void
     {
         $this->query->products->media_collection->media->fields('tribes');
         $this->query->products->media_collection->media->tribes->fields(
@@ -141,7 +143,7 @@ class Product extends QueryAbstract
     /**
      *
      */
-    private function includeComponents()
+    private function includeComponents(): void
     {
         $this->query->products->componentTypes->fields(
             'name',
@@ -175,7 +177,7 @@ class Product extends QueryAbstract
     /**
      *
      */
-    private function includeRelatedProducts()
+    private function includeRelatedProducts(): void
     {
         $this->query->products->product_custom_data->fields(
             'name',
@@ -200,13 +202,32 @@ class Product extends QueryAbstract
     }
 
     /**
-     * @param $inventoryTribeSlug
+     * @param $includeInventory
      */
-    private function includeInventory($inventoryTribeSlug)
+    private function includeInventory($includeInventory): void
     {
-        $this->query->products->fields('inventories');
-        $this->query->products->inventories->fields('unit_price', 'quantity', 'variants', 'id', 'customData');
-        $this->query->products->inventories->customData->fields('name', 'type', 'value');
-        $this->query->products->inventories->attribute('slug', $inventoryTribeSlug);
+        try {
+            $decode = Json::decode($includeInventory, true);
+            if (\count($decode) > 0) {
+                $this->query->products->fields('inventories');
+                $this->query->products->inventories->fields('unit_price', 'quantity', 'variants', 'id', 'customData');
+                $this->query->products->inventories->customData->fields('name', 'type', 'value');
+
+                if ($tribeSlug = data_get($decode, 'tribe_slug')) {
+                    $this->query->products->inventories->attribute('tribe_slug', $tribeSlug);
+                }
+
+                if ($tribeId = data_get($decode, 'tribe_id')) {
+                    $this->query->products->inventories->attribute('tribe_id', (int)$tribeId);
+                }
+
+                if ($id = data_get($decode, 'id')) {
+                    $this->query->products->inventories->attribute('id', (int)$id);
+                }
+            }
+        } catch (Exception $ex) {
+            dump($ex->getMessage());
+            return;
+        }
     }
 }

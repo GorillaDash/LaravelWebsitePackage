@@ -2,6 +2,8 @@
 
 namespace GorillaDash\LaravelWebsite\Queries;
 
+use Eastwest\Json\Json;
+use Exception;
 use GorillaDash\LaravelWebsite\Types\MediaSizeType;
 
 /**
@@ -133,12 +135,27 @@ class ProductRange extends QueryAbstract
             MediaSizeType::MEDIA_SIZES
         );
 
-        if ($includeInventory = $this->getParam('includeInventory')) {
-            $this->query->ranges->products->fields('inventories');
-            $this->query->ranges->products->inventories
-                ->fields('unit_price', 'quantity', 'variants', 'id', 'customData');
-            $this->query->ranges->products->inventories->customData->fields('name', 'type', 'value');
-            $this->query->ranges->products->inventories->attribute('slug', $includeInventory);
+        try {
+            if ($includeInventory = $this->getParam('includeInventory')) {
+                $decode = Json::decode($includeInventory, true);
+                if (is_array($decode) && \count($decode) > 0) {
+                    $this->query->ranges->products->fields('inventories');
+                    $this->query->ranges->products->inventories
+                        ->fields('unit_price', 'quantity', 'variants', 'id', 'customData');
+                    $this->query->ranges->products->inventories->customData->fields('name', 'type', 'value');
+                    if ($tribeSlug = data_get($decode, 'tribe_slug')) {
+                        $this->query->ranges->products->inventories->attribute('tribe_slug', $tribeSlug);
+                    }
+                    if ($tribeId = data_get($decode, 'tribe_id')) {
+                        $this->query->ranges->products->inventories->attribute('tribe_id', $tribeId);
+                    }
+                    if ($id = data_get($decode, 'id')) {
+                        $this->query->ranges->products->inventories->attribute('id', $id);
+                    }
+                }
+            }
+        } catch (Exception $ex) {
+            return;
         }
     }
 

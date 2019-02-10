@@ -43,7 +43,7 @@
         },
       },
       includeInventory: {
-        type: String,
+        type: Object,
         default() {
           return null;
         },

@@ -120,6 +120,10 @@ class Product extends QueryAbstract
         if ($this->getParam('includeRelatedProducts')) {
             $this->includeRelatedProducts();
         }
+
+        if ($inventoryTribeSlug = $this->getParam('inventoryTribeSlug')) {
+            $this->includeInventory($inventoryTribeSlug);
+        }
     }
 
     /**
@@ -193,5 +197,15 @@ class Product extends QueryAbstract
         $this->query->products->product_related_products->media_collection->media->fields(
             MediaSizeType::MEDIA_SIZES
         );
+    }
+
+    /**
+     * @param $inventoryTribeSlug
+     */
+    private function includeInventory($inventoryTribeSlug)
+    {
+        $this->query->products->fields('inventories');
+        $this->query->products->inventories->fields('unit_price', 'quantity', 'variants', 'id', 'customData');
+        $this->query->products->inventories->attribute('slug', $inventoryTribeSlug);
     }
 }

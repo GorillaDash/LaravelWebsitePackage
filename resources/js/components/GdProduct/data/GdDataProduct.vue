@@ -39,6 +39,9 @@
       componentTypes: {
         type: String,
       },
+      inventoryTribeSlug: {
+        type: String,
+      },
     },
     data() {
       return {
@@ -53,6 +56,7 @@
           includeMediaTribe: this.includeMediaTribe,
           includeComponents: this.includeComponents,
           includeRelatedProducts: this.includeRelatedProducts,
+          inventoryTribeSlug: this.inventoryTribeSlug,
         }
       }
     },

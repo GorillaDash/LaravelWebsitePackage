@@ -36,6 +36,12 @@
           return false;
         },
       },
+      includeMedia: {
+        type: Boolean,
+        default() {
+          return false;
+        },
+      },
     },
     data() {
       return {
@@ -49,6 +55,7 @@
           name: this.typeName,
           orderBy: this.orderBy,
           includeContents: this.includeContents,
+          includeMedia: this.includeMedia,
         }
       }
     },

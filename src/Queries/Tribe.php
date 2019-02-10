@@ -115,5 +115,19 @@ class Tribe extends QueryAbstract
         if ($this->getParam('includeContents')) {
             $this->includeContents();
         }
+
+        if ($this->getParam('includeMedia')) {
+            $this->includeMedia();
+        }
+    }
+
+    /**
+     *
+     */
+    private function includeMedia()
+    {
+        $this->query->tribes->fields('media_collection');
+        $this->query->tribes->media_collection->fields('name', 'description', 'media');
+        $this->query->tribes->media_collection->media->fields(MediaSizeType::MEDIA_SIZES);
     }
 }

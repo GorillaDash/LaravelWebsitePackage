@@ -28,8 +28,14 @@
         type: String,
         default() {
           return null;
-        }
-      }
+        },
+      },
+      includeContents: {
+        type: Boolean,
+        default() {
+          return false;
+        },
+      },
     },
     data() {
       return {
@@ -42,6 +48,7 @@
           slug: this.tribeSlug,
           name: this.typeName,
           orderBy: this.orderBy,
+          includeContents: this.includeContents,
         }
       }
     },

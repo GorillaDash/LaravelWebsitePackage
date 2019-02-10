@@ -2,6 +2,8 @@
 
 namespace GorillaDash\LaravelWebsite\Queries;
 
+use GorillaDash\LaravelWebsite\Types\MediaSizeType;
+
 /**
  * Class Tribe
  *
@@ -83,6 +85,17 @@ class Tribe extends QueryAbstract
     }
 
     /**
+     *
+     */
+    private function includeContents()
+    {
+        $this->query->tribes->fields('contents');
+        $this->query->tribes->contents->fields('name', 'type', 'value', 'media_collection');
+        $this->query->tribes->contents->media_collection('name', 'description', 'media');
+        $this->query->tribes->contents->media(MediaSizeType::MEDIA_SIZES);
+    }
+
+    /**
      * Apply request params.
      */
     protected function applyRequestParams(): void
@@ -97,6 +110,10 @@ class Tribe extends QueryAbstract
 
         if ($order = $this->getParam('orderBy')) {
             $this->setOrderBy([$order]);
+        }
+
+        if ($this->getParam('includeContents')) {
+            $this->includeContents();
         }
     }
 }

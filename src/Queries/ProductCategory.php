@@ -160,6 +160,7 @@ class ProductCategory extends QueryAbstract
         );
 
         if ($includeInventory = $this->getParam('includeInventory')) {
+            dump($includeInventory);
             $this->query->categories->products->fields('inventories');
             $this->query->categories->products->inventories
                 ->fields('unit_price', 'quantity', 'variants', 'id', 'customData');

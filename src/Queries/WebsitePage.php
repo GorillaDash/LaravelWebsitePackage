@@ -86,5 +86,45 @@ class WebsitePage extends QueryAbstract
         if ($template = $this->getParam('template_type')) {
             $this->setTemplateType($template);
         }
+
+        if ($this->getParam('includeComponents')) {
+            $this->includeComponents();
+        }
+    }
+
+    /**
+     *
+     */
+    private function includeComponents()
+    {
+        $this->query->websitePages->fields('componentTypes');
+        $this->query->websitePages->componentTypes->fields(
+            'name',
+            'status',
+            'base_path',
+            'components'
+        );
+
+        $this->query->websitePages->componentTypes->components->fields(
+            'name',
+            'slug',
+            'contents'
+        );
+
+        $this->query->websitePages->componentTypes->components->contents->fields(
+            'name',
+            'type',
+            'value',
+            'media_collection'
+        );
+
+        $this->query->websitePages->componentTypes->components->contents->media_collection->fields(
+            'name',
+            'media'
+        );
+
+        $this->query->websitePages->componentTypes->components->contents->media_collection->media->fields(
+            MediaSizeType::MEDIA_SIZES
+        );
     }
 }

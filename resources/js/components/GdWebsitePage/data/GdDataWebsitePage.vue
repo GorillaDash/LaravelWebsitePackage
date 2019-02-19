@@ -15,6 +15,12 @@ export default {
     slug: {
       type: String,
       required: true
+    },
+    includeComponents: {
+      type: Boolean,
+      default() {
+        return false
+      },
     }
   },
   data() {
@@ -25,7 +31,8 @@ export default {
   computed: {
     params() {
       return {
-        slug: this.slug
+        slug: this.slug,
+        includeComponents: this.includeComponents
       }
     }
   },

@@ -40,8 +40,6 @@ class QueryFactory
                 return new TribeMedia($params);
             case 'tribeComponent':
                 return new TribeComponent($params);
-            case 'tribeOpeningHours':
-                return new TribeOpeningHours($params);
             case 'tribeOurWork':
                 return new TribeOurWork($params);
             case 'tribeContent':

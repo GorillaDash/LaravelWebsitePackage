@@ -50,7 +50,9 @@ class Tribe extends QueryAbstract
             'introduction_team',
             'status',
             'meta_title',
-            'meta_description'
+            'meta_description',
+            'opening_hours',
+            'opening_hours_array'
         );
     }
 

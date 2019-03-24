@@ -52,7 +52,8 @@ class Tribe extends QueryAbstract
             'meta_title',
             'meta_description',
             'opening_hours',
-            'opening_hours_array'
+            'opening_hours_array',
+            'show_opening_hours'
         );
     }
 

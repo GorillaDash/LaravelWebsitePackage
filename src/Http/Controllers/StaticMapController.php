@@ -30,7 +30,7 @@ class StaticMapController extends Controller
         $width = $request->query('w', 400);
         $height = $request->query('h', 300);
         $zoom = $request->query('z', 15);
-        $path = "maps/{$lat}.{$lng}.png";
+        $path = "maps/{$lat}.{$lng}.{$width}.{$height}.png";
         $disk = config('gorilladash.storage.google_map');
         if (Storage::disk($disk)->exists($path)) {
             return response(Storage::disk($disk)->get($path), 201)

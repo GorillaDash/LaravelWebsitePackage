@@ -3,6 +3,7 @@
 namespace GorillaDash\LaravelWebsite\Queries;
 
 use GorillaDash\LaravelWebsite\Exceptions\GorillaDashInvalidQueryException;
+use GorillaDash\LaravelWebsite\Mutations\SubmitEnquiry;
 
 /**
  * Class QueryFactory
@@ -60,6 +61,8 @@ class QueryFactory
                 return new Organisation($params);
             case 'websiteInfo':
                 return new WebsiteInfo($params);
+            case 'submitEnquiry':
+                return new SubmitEnquiry($params);
             default:
                 throw new GorillaDashInvalidQueryException("Invalid query name: {$endpoint}");
         }

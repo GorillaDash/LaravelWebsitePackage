@@ -18,5 +18,6 @@ export default [
   'productType',
   'productSuppliers',
   'reviews',
-  'organisation'
+  'organisation',
+  'submitEnquiry',
 ]

@@ -35,12 +35,13 @@ abstract class QueryAbstract
     /**
      * QueryAbstract constructor.
      *
-     * @param array $params
+     * @param array  $params
+     * @param string $type
      */
-    public function __construct(array $params = [])
+    public function __construct(array $params = [], $type = Query::TYPE_QUERY)
     {
         $this->params = $params;
-        $this->query = new GraphQLQuery($this->queryName);
+        $this->query = new GraphQLQuery($this->queryName, [], $type);
         $this->gorilladash = app()->make('laravelwebsite');
         $this->fields();
         $this->applyRequestParams();
@@ -55,6 +56,7 @@ abstract class QueryAbstract
         if (!$this->query || !$this->query instanceof Query) {
             throw new InvalidArgumentException();
         }
+
         return $this->gorilladash->request('POST', '/graphql', [
             'query' => $this->query->build(),
         ]);

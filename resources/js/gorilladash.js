@@ -54,4 +54,18 @@ export default class Gorilladash {
       }
     }
   }
+
+  async mutation(query, body = {}) {
+    if (Gorilladash.validateQuery(query)) {
+      try {
+        const { data } = await this.$axios.$post(`/gorilladash/mutation/${query}`, body)
+        return data
+      } catch (e) {
+        console.log(e)
+        if (e && e.response && e.response.message) {
+          console.log(e.response.message)
+        }
+      }
+    }
+  }
 }

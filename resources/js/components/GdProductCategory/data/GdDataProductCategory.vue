@@ -65,6 +65,7 @@
     methods: {
       async fetch() {
         this.results = await this.$gorilladash.query('productCategories', this.params)
+        this.$emit('fetched')
       }
     }
   }

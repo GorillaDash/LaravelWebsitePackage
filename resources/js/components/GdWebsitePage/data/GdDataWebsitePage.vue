@@ -45,6 +45,7 @@ export default {
         'websitePages',
         this.params
       )
+      this.$emit('fetched')
     }
   }
 }

@@ -65,6 +65,7 @@
     methods: {
       async fetch() {
         this.results = await this.$gorilladash.query('tribes', this.params)
+        this.$emit('fetched')
       }
     }
   }

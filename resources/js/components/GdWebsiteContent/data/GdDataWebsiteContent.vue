@@ -37,6 +37,7 @@ export default {
         'websiteSections',
         this.params
       )
+      this.$emit('fetched')
     }
   }
 }

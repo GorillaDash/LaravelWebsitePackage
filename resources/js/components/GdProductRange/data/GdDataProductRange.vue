@@ -71,6 +71,7 @@
     methods: {
       async fetch() {
         this.results = await this.$gorilladash.query('productRanges', this.params)
+        this.$emit('fetched')
       }
     }
   }

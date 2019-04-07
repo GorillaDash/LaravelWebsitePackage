@@ -42,6 +42,7 @@
           'websiteComponents',
           this.params
         )
+        this.$emit('fetched')
       }
     }
   };

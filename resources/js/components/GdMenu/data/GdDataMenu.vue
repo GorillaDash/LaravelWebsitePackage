@@ -36,6 +36,7 @@ export default {
   methods: {
     async fetch() {
       this.results = await this.$gorilladash.query('websiteMenus', this.params)
+      this.$emit('fetched')
     }
   }
 }

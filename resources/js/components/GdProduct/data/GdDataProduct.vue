@@ -72,6 +72,7 @@
     methods: {
       async fetch() {
         this.results = await this.$gorilladash.query('products', this.params)
+        this.$emit('fetched')
       }
     }
   }

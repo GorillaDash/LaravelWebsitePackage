@@ -6,7 +6,6 @@ export default [
   'articleCategories',
   'articles',
   'tribes',
-  'tribeTeamMembers',
   'tribeMedia',
   'tribeComponent',
   'tribeOpeningHours',

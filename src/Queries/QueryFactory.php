@@ -35,8 +35,6 @@ class QueryFactory
                 return new Article($params);
             case 'tribes':
                 return new Tribe($params);
-            case 'tribeTeamMembers':
-                return new TribeTeamMember($params);
             case 'tribeMedia':
                 return new TribeMedia($params);
             case 'tribeComponent':

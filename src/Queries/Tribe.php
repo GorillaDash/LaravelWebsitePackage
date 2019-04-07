@@ -122,6 +122,10 @@ class Tribe extends QueryAbstract
         if ($this->getParam('includeMedia')) {
             $this->includeMedia();
         }
+
+        if ($this->getParam('includeTeamMembers')) {
+            $this->includeTeamMembers();
+        }
     }
 
     /**
@@ -132,5 +136,22 @@ class Tribe extends QueryAbstract
         $this->query->tribes->fields('media_collection');
         $this->query->tribes->media_collection->fields('name', 'description', 'media');
         $this->query->tribes->media_collection->media->fields(MediaSizeType::MEDIA_SIZES);
+    }
+
+    /**
+     *
+     */
+    private function includeTeamMembers()
+    {
+        $this->query->tribes->fields(
+            'teamMembers'
+        );
+        $this->query->tribes->teamMembers->fields(
+            'first_name',
+            'last_name',
+            'about',
+            'role',
+            'avatar'
+        );
     }
 }

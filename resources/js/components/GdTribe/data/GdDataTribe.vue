@@ -42,6 +42,12 @@
           return false;
         },
       },
+      includeTeamMembers: {
+        type: Boolean,
+        default() {
+          return false;
+        },
+      },
     },
     data() {
       return {
@@ -56,6 +62,7 @@
           orderBy: this.orderBy,
           includeContents: this.includeContents,
           includeMedia: this.includeMedia,
+          includeTeamMembers: this.includeTeamMembers,
         }
       }
     },

@@ -29,6 +29,7 @@ class StaticMapController extends Controller
     {
         $width = $request->query('w', 400);
         $height = $request->query('h', 300);
+        $scale = $request->query('s', 1);
         $zoom = $request->query('z', 15);
         $path = "maps/{$lat}.{$lng}.{$width}.{$height}.png";
         $disk = config('gorilladash.storage.google_map');
@@ -41,6 +42,7 @@ class StaticMapController extends Controller
         $url = $map->setCenterLatLng($lat, $lng)
             ->setMapType(MapType::RoadMap)
             ->setZoom($zoom)
+            ->setScale($scale)
             ->setSize($width, $height)
             ->setFormat(Format::PNG)
             ->addMarkerLatLng($lat, $lng, '', 'red', Size::Large)

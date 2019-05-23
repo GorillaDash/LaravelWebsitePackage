@@ -44,7 +44,8 @@ class Product extends QueryAbstract
             'product_custom_data',
             'product_related_products',
             'path',
-            'product_categories'
+            'product_categories',
+            'features'
         );
 
         $this->query->products->product_type->fields(

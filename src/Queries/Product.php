@@ -106,7 +106,7 @@ class Product extends QueryAbstract
         }
 
         if ($onlyShop = $this->getParam('onlyShop')) {
-            $this->setOnlyShop($onlyShop ? 'true' : 'false');
+            $this->setOnlyShop($onlyShop);
         }
 
         if ($this->getParam('includeMediaTribe')) {
@@ -204,8 +204,6 @@ class Product extends QueryAbstract
 
     /**
      * @param $includeInventory
-     *
-     * @throws \Exception
      */
     private function includeInventory($includeInventory): void
     {
@@ -229,7 +227,6 @@ class Product extends QueryAbstract
                 }
             }
         } catch (Exception $ex) {
-
             throw $ex;
         }
     }

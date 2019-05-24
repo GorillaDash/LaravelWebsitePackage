@@ -40,9 +40,6 @@ class Product extends QueryAbstract
             'page_heading',
             'page_sub_heading',
             'media_collection',
-            'componentTypes',
-            'product_custom_data',
-            'product_related_products',
             'path',
             'product_categories',
             'features'
@@ -146,6 +143,9 @@ class Product extends QueryAbstract
      */
     private function includeComponents(): void
     {
+        $this->query->product->fields([
+            'componentTypes',
+        ]);
         $this->query->products->componentTypes->fields(
             'name',
             'status',
@@ -180,6 +180,8 @@ class Product extends QueryAbstract
      */
     private function includeRelatedProducts(): void
     {
+        $this->query->products->fields(['product_custom_data']);
+        $this->query->products->fields(['product_related_products']);
         $this->query->products->product_custom_data->fields(
             'name',
             'type',
@@ -204,6 +206,7 @@ class Product extends QueryAbstract
 
     /**
      * @param $includeInventory
+     * @throws Exception
      */
     private function includeInventory($includeInventory): void
     {

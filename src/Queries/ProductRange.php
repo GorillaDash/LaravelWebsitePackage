@@ -168,8 +168,8 @@ class ProductRange extends QueryAbstract
             $this->setSlug($slug);
         }
 
-        if ($onlyShop = $this->getParam('onlyShop')) {
-            $this->setResultCount($onlyShop);
+        if ($resultCount = $this->getParam('resultCount')) {
+            $this->setResultCount($resultCount);
         }
 
         if ($this->getParam('includeComponents')) {

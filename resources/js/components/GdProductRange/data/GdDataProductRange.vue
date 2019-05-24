@@ -58,7 +58,7 @@
       params() {
         return {
           slug: this.slug,
-          'result-count': this.resultCount,
+          resultCount: this.resultCount,
           includeComponents: this.includeComponents,
           includeProducts: this.includeProducts,
           includeInventory: this.includeInventory,

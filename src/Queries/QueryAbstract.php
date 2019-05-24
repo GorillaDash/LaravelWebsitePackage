@@ -96,7 +96,17 @@ abstract class QueryAbstract
      */
     protected function getParam($key)
     {
-        return data_get($this->params, $key);
+        $value = data_get($this->params, $key);
+
+        // cast value
+        if ($value === 'true') {
+            $value = true;
+        }
+
+        if ($value === 'false') {
+            $value = false;
+        }
+        return $value;
     }
 
     /**

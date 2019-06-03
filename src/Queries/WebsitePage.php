@@ -142,7 +142,15 @@ class WebsitePage extends QueryAbstract
             'name',
             'slug',
             'menu_label',
-            'media_collection'
+            'media_collection',
+            'heading',
+            'sub_heading',
+            'caption',
+            'description',
+            'meta',
+            'page_heading',
+            'page_sub_heading',
+            'product_custom_data'
         );
 
         $this->query->websitePages->products->media_collection->fields(
@@ -152,6 +160,12 @@ class WebsitePage extends QueryAbstract
 
         $this->query->websitePages->products->media_collection->media->fields(
             MediaSizeType::MEDIA_SIZES
+        );
+
+        $this->query->websitePages->products->product_custom_data->fields(
+            'name',
+            'type',
+            'value'
         );
     }
 }

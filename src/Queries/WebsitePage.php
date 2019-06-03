@@ -90,6 +90,9 @@ class WebsitePage extends QueryAbstract
         if ($this->getParam('includeComponents')) {
             $this->includeComponents();
         }
+        if ($this->getParam('includeRelatedProducts')) {
+            $this->includeRelatedProducts();
+        }
     }
 
     /**

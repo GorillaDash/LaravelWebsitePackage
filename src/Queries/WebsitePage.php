@@ -137,26 +137,26 @@ class WebsitePage extends QueryAbstract
      */
     private function includeRelatedProducts(): void
     {
-        $this->query->products->fields(['product_custom_data']);
-        $this->query->products->fields(['product_related_products']);
-        $this->query->products->product_custom_data->fields(
+        $this->query->websitePages->fields(['product_custom_data']);
+        $this->query->websitePages->fields(['product_related_products']);
+        $this->query->websitePages->product_custom_data->fields(
             'name',
             'type',
             'value'
         );
 
-        $this->query->products->product_related_products->fields(
+        $this->query->websitePages->product_related_products->fields(
             'name',
             'slug',
             'media_collection'
         );
 
-        $this->query->products->product_related_products->media_collection->fields(
+        $this->query->websitePages->product_related_products->media_collection->fields(
             'name',
             'media'
         );
 
-        $this->query->products->product_related_products->media_collection->media->fields(
+        $this->query->websitePages->product_related_products->media_collection->media->fields(
             MediaSizeType::MEDIA_SIZES
         );
     }

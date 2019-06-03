@@ -127,4 +127,34 @@ class WebsitePage extends QueryAbstract
             MediaSizeType::MEDIA_SIZES
         );
     }
+
+
+    /**
+     *
+     */
+    private function includeRelatedProducts()
+    {
+        $this->query->products->fields(['product_custom_data']);
+        $this->query->products->fields(['product_related_products']);
+        $this->query->products->product_custom_data->fields(
+            'name',
+            'type',
+            'value'
+        );
+
+        $this->query->products->product_related_products->fields(
+            'name',
+            'slug',
+            'media_collection'
+        );
+
+        $this->query->products->product_related_products->media_collection->fields(
+            'name',
+            'media'
+        );
+
+        $this->query->products->product_related_products->media_collection->media->fields(
+            MediaSizeType::MEDIA_SIZES
+        );
+    }
 }

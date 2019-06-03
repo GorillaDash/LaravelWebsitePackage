@@ -132,7 +132,7 @@ class WebsitePage extends QueryAbstract
     /**
      *
      */
-    private function includeRelatedProducts()
+    private function includeRelatedProducts(): void
     {
         $this->query->products->fields(['product_custom_data']);
         $this->query->products->fields(['product_related_products']);

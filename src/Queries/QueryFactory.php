@@ -61,6 +61,8 @@ class QueryFactory
                 return new WebsiteInfo($params);
             case 'submitEnquiry':
                 return new SubmitEnquiry($params);
+            case 'websiteRedirects':
+                return new WebsiteRedirect($params);
             default:
                 throw new GorillaDashInvalidQueryException("Invalid query name: {$endpoint}");
         }

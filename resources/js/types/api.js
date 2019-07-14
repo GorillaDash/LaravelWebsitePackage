@@ -19,4 +19,5 @@ export default [
   'reviews',
   'organisation',
   'submitEnquiry',
+  'websiteRedirects',
 ]

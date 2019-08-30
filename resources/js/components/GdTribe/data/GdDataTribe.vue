@@ -1,7 +1,7 @@
 <template>
   <div>
     <slot :results="results" />
-    <gd-component-dev-tool :results="results"></gd-component-dev-tool>
+    <gd-component-dev-tool :results="results" />
   </div>
 </template>
 

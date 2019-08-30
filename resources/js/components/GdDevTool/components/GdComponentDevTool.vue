@@ -31,8 +31,7 @@
           </div>
           <div
             class="flex-grow"
-          >
-          </div>
+          />
           <div
             class="flex-none"
           >
@@ -44,7 +43,7 @@
             </button>
           </div>
         </div>
-        <div class="border-t-2 border-grey"></div>
+        <div class="border-t-2 border-grey" />
         <div class="overflow-auto text-left">
           <pre>
             <code>
@@ -54,9 +53,7 @@
         </div>
       </div>
     </div>
-
   </div>
-
 </template>
 
 <style scoped lang="scss">

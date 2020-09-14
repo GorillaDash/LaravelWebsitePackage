@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "GorillaDash vue components",
   "license": "MIT",
+  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
   "main": "dist/gorilladash.ssr.js",
   "browser": "dist/gorilladash.min.js",
   "module": "dist/gorilladash.min.js",

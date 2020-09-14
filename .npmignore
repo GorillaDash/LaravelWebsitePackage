@@ -1,5 +1,5 @@
-./vendor
-./src
-./routes
-./config
-./.idea
+vendor
+src
+routes
+config
+.idea

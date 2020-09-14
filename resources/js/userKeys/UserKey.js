@@ -1,7 +1,7 @@
 import fp from 'fingerprintjs2';
 
 export default class UserKey {
-  GD_USER_KEY = 'GORILLA_USER_KEY';
+  GD_USER_KEY = 'gorilla_user_key';
 
   constructor() {
     if (window.requestIdleCallback) {

@@ -1,9 +1,11 @@
 {
   "name": "@gorilladash/vue",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "GorillaDash vue components",
   "license": "MIT",
-  "publishConfig": { "access": "public" },
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git@github.com:GorillaDash/LaravelWebsitePackage.git"

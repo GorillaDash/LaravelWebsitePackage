@@ -1,13 +1,15 @@
 import apiTypes from '../js/types/api'
+import UserKey from './userKeys/UserKey'
 
 export default class Gorilladash {
 
   config = {}
 
-  constructor({ config, axios, devtool = false}) {
+  constructor({ config = {}, axios = null, devtool = false}) {
     this.devtool = devtool
     this.$axios = axios
     this.setConfig(config)
+    this.userKey = new UserKey()
   }
 
   async loadWebsiteConfig() {
@@ -19,7 +21,9 @@ export default class Gorilladash {
   }
 
   async setConfig(config) {
-    Object.assign(this.config, config, await this.loadWebsiteConfig())
+    if (this.$axios) {
+      Object.assign(this.config, config, await this.loadWebsiteConfig())
+    }
   }
 
   /**
@@ -67,5 +71,9 @@ export default class Gorilladash {
         }
       }
     }
+  }
+
+  getGorillaUserKey() {
+    return this.userKey.get();
   }
 }

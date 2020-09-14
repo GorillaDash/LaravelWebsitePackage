@@ -28,7 +28,7 @@ class AccessToken implements Serializable
      * AccessToken constructor.
      *
      * @param string $accessToken
-     * @param int    $expiredAt
+     * @param null   $expiredAt
      */
     public function __construct(string $accessToken, $expiredAt = null)
     {
@@ -55,7 +55,7 @@ class AccessToken implements Serializable
      */
     public function isExpired(): ?bool
     {
-        if ($this->getExpiredAt() instanceof \DateTime) {
+        if ($this->getExpiredAt() instanceof DateTime) {
             return $this->getExpiredAt()->getTimestamp() < time();
         }
 

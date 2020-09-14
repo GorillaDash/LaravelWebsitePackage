@@ -2,7 +2,6 @@
 
 namespace GorillaDash\LaravelWebsite;
 
-use Artisan;
 use Eastwest\Json\Json;
 use GorillaDash\LaravelWebsite\Commands\CacheWebsiteInfoCommand;
 use GorillaDash\LaravelWebsite\Queries\QueryAbstract;
@@ -10,8 +9,9 @@ use GorillaDash\LaravelWebsite\Queries\QueryCollection;
 use GorillaDash\LaravelWebsite\Queries\QueryFactory;
 use GorillaDash\LaravelWebsite\Requests\GorillaDashRequest;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
-use Log;
 
 /**
  * Class GorillaDash

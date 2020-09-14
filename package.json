@@ -1,6 +1,6 @@
 {
   "name": "@gorilladash/vue",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "GorillaDash vue components",
   "license": "MIT",
   "publishConfig": {

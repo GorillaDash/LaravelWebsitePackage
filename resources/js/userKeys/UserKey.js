@@ -1,7 +1,7 @@
 import fp from 'fingerprintjs2';
 
 export default class UserKey {
-  GD_USER_KEY = 'gorilla_user_key';
+  userKey = null
 
   constructor() {
     if (window.requestIdleCallback) {
@@ -16,15 +16,15 @@ export default class UserKey {
       return;
     }
     fp.get((components) => {
-      window.localStorage.setItem(this.GD_USER_KEY, fp.x64hash128(components.map(component => component.value).join(''), 31))
+      this.userKey = fp.x64hash128(components.map(component => component.value).join(''), 31);
     });
   }
 
   get() {
-    return window.localStorage.getItem(this.GD_USER_KEY)
+    return this.userKey
   }
 
   has() {
-    return !!window.localStorage.getItem(this.GD_USER_KEY)
+    return !!this.userKey
   }
 }

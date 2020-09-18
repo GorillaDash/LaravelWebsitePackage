@@ -32,6 +32,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.10",
     "@fortawesome/free-solid-svg-icons": "^5.6.1",
     "@fortawesome/vue-fontawesome": "0.1.2",
+    "axios": "^0.20.0",
     "collect.js": "^4.2.1",
     "fingerprintjs2": "^2.1.2",
     "lodash.debounce": "^4.0.8",

@@ -1,5 +1,6 @@
 import apiTypes from '../js/types/api'
 import UserKey from './userKeys/UserKey'
+import Visitor from './events/visitor';
 
 export default class Gorilladash {
 
@@ -10,6 +11,7 @@ export default class Gorilladash {
     this.$axios = axios
     this.setConfig(config)
     this.userKey = new UserKey()
+    this.visitor = new Visitor(config, this.userKey)
   }
 
   async loadWebsiteConfig() {
@@ -74,6 +76,10 @@ export default class Gorilladash {
   }
 
   getGorillaUserKey() {
-    return this.userKey.get();
+    return this.userKey.get()
+  }
+
+  getVisitor() {
+    return this.visitor
   }
 }

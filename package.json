@@ -1,6 +1,6 @@
 {
   "name": "@gorilladash/vue",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "GorillaDash vue components",
   "license": "MIT",
   "publishConfig": {
@@ -34,6 +34,7 @@
     "@fortawesome/vue-fontawesome": "0.1.2",
     "axios": "^0.20.0",
     "collect.js": "^4.2.1",
+    "eventemitter3": "^4.0.7",
     "fingerprintjs2": "^2.1.2",
     "lodash.debounce": "^4.0.8",
     "lodash.get": "^4.4.2",

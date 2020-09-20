@@ -1,16 +1,19 @@
+import EventEmitter from 'eventemitter3'
 import apiTypes from '../js/types/api'
 import UserKey from './userKeys/UserKey'
-import Visitor from './events/visitor';
+import Visitor from './events/visitor'
 
 export default class Gorilladash {
 
   config = {}
 
-  constructor({ config = {}, axios = null, devtool = false}) {
+  constructor({ config = {}, axios = null, devtool = false, userKeyReady = () => {}}) {
+    this.emitter = new EventEmitter()
+    this.emitter.on('generated', userKeyReady)
     this.devtool = devtool
     this.$axios = axios
     this.setConfig(config)
-    this.userKey = new UserKey()
+    this.userKey = new UserKey(this.emitter)
     this.visitor = new Visitor(config, this.userKey)
   }
 

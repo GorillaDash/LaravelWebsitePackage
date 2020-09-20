@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'axios'
 
 export default class Visitor {
   constructor(config, userKey) {
@@ -20,6 +20,6 @@ export default class Visitor {
       page_name: pageName,
       page_type: pageType,
       extra_data: extraData,
-    });
+    })
   }
 }

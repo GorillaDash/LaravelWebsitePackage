@@ -15,7 +15,7 @@ export default class Visitor {
 
   async collect(eventType, pageName = null, pageType = null, extraData = {}) {
     await this.$axios.post('/events/collect', {
-      gorilla_user_key: this.userKey.get(),
+      gorilla_user_key: await this.userKey.get(),
       event_type: eventType,
       page_name: pageName,
       page_type: pageType,

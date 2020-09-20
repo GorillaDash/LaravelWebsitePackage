@@ -24,7 +24,7 @@ export default class UserKey {
     })
   }
 
-  async get() {
+  get() {
     if (!this.has()) {
       this.initial()
     }

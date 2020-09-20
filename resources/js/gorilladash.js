@@ -78,6 +78,10 @@ export default class Gorilladash {
     }
   }
 
+  initialGorillaUserKey() {
+
+  }
+
   getGorillaUserKey() {
     return this.userKey.get()
   }

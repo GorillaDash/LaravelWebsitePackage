@@ -15,18 +15,21 @@ export default class UserKey {
   }
 
   initial() {
-    if (this.has()) {
-      return
-    }
-    fp.get((components) => {
-      this.userKey = fp.x64hash128(components.map(component => component.value).join(''), 31)
-      this.emitter.emit('generated')
+    return new Promise((resolve) => {
+      if (this.has()) {
+        return resolve()
+      }
+      fp.get((components) => {
+        this.userKey = fp.x64hash128(components.map(component => component.value).join(''), 31)
+        resolve(this.userKey)
+        this.emitter.emit('generated')
+      })
     })
   }
 
-  get() {
+  async get() {
     if (!this.has()) {
-      this.initial()
+      await this.initial()
     }
       return this.userKey
   }

@@ -5,7 +5,7 @@ export default class UserKey {
 
   constructor(emitter) {
     this.emitter = emitter
-    if (typeof window !== 'undefined' && typeof window.Vue !== 'undefined') {
+    if (typeof window !== 'undefined') {
       if (window.requestIdleCallback) {
         requestIdleCallback(() => this.initial())
       } else {

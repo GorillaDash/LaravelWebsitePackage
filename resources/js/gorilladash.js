@@ -28,7 +28,10 @@ export default class Gorilladash {
   async setConfig(config) {
     if (this.$axios) {
       Object.assign(this.config, config, await this.loadWebsiteConfig())
+      return
     }
+
+    Object.assign(this.config, config);
   }
 
   /**

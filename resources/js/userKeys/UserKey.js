@@ -24,8 +24,11 @@ export default class UserKey {
     })
   }
 
-  get() {
-    return this.userKey
+  async get() {
+    if (!this.has()) {
+      this.initial()
+    }
+      return this.userKey
   }
 
   has() {

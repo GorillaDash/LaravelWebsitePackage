@@ -1,4 +1,5 @@
 import axios from 'axios'
+import collect from 'collect.js'
 
 export default class Visitor {
   constructor(config, userKey) {
@@ -19,7 +20,17 @@ export default class Visitor {
       event_type: eventType,
       page_name: pageName,
       page_type: pageType,
-      extra_data: extraData,
+      extra_data: {
+        ...extraData,
+        ...this.getGDMeta(),
+      },
     })
+  }
+
+  getGDMeta() {
+    return collect([...document.querySelectorAll('meta')])
+      .filter(meta => meta.name.indexOf('gd:') === 0)
+      .mapWithKeys(meta => [meta.name, meta.content])
+      .all();
   }
 }

@@ -52,6 +52,9 @@ class GorillaDashController extends Controller
     public function mutation($query, Request $request): ?\Illuminate\Http\JsonResponse
     {
         try {
+            if (!$request->has('ip')) {
+                $request->merge(['ip' => $request->getClientIp()]);
+            }
             $client = QueryFactory::create($query, $request->all());
             $data = $client->get();
 

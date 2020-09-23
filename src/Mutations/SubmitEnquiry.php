@@ -42,7 +42,7 @@ class SubmitEnquiry extends MutationAbstract
                 'first_name' => $firstName,
                 'last_name' => $lastName,
                 'email' => $this->getParam('email'),
-                'ip' => '',
+                'ip' => $this->getParam('ip'),
                 'mobile' => $this->getParam('mobile'),
                 'business_name' => $this->getParam('business_name'),
                 'fields' => [
@@ -54,6 +54,7 @@ class SubmitEnquiry extends MutationAbstract
                 'tribes' => [
                     $this->getParam('tribe'),
                 ],
+                'gorilla_user_key' => $this->getParam('gorilla_user_key'),
             ]);
     }
 }

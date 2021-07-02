@@ -10,7 +10,7 @@ export default class Gorilladash {
     this.devtool = devtool
     this.$axios = axios
     this.setConfig(config)
-    this.userKey = new UserKey(userKeyReady)
+    this.userKey = new UserKey(userKeyReady, config?.userKeyInit ?? true)
     this.visitor = new Visitor(config, this.userKey)
   }
 

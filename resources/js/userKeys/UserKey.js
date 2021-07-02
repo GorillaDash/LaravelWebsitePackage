@@ -4,9 +4,9 @@ export default class UserKey {
   userKey = null
   callback = null
 
-  constructor(callback) {
+  constructor(callback, init) {
     this.callback = callback
-    if (typeof window !== 'undefined') {
+    if (init && typeof window !== 'undefined') {
       if (window.requestIdleCallback) {
         requestIdleCallback(() => this.initial())
       } else {

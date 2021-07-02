@@ -2,9 +2,10 @@ import fp from 'fingerprintjs2'
 
 export default class UserKey {
   userKey = null
+  callback = null
 
-  constructor(emitter) {
-    this.emitter = emitter
+  constructor(callback) {
+    this.callback = callback
     if (typeof window !== 'undefined') {
       if (window.requestIdleCallback) {
         requestIdleCallback(() => this.initial())
@@ -17,21 +18,21 @@ export default class UserKey {
   initial() {
     return new Promise((resolve) => {
       if (this.has()) {
-        return resolve()
+        return resolve(this.userKey)
       }
+
       fp.get((components) => {
         this.userKey = fp.x64hash128(components.map(component => component.value).join(''), 31)
         resolve(this.userKey)
-        this.emitter.emit('generated')
+        if (this.callback) {
+          this.callback()
+        }
       })
     })
   }
 
   async get() {
-    if (!this.has()) {
-      await this.initial()
-    }
-      return this.userKey
+    return this.initial()
   }
 
   has() {

@@ -3,6 +3,8 @@
 namespace GorillaDash\LaravelWebsite\Queries;
 
 use GorillaDash\LaravelWebsite\Exceptions\GorillaDashInvalidQueryException;
+use GorillaDash\LaravelWebsite\Mutations\MutationAbstract;
+use GorillaDash\LaravelWebsite\Mutations\SubmitAppointment;
 use GorillaDash\LaravelWebsite\Mutations\SubmitEnquiry;
 
 /**
@@ -63,6 +65,8 @@ class QueryFactory
                 return new SubmitEnquiry($params);
             case 'websiteRedirects':
                 return new WebsiteRedirect($params);
+            case 'submitAppointment':
+                return new SubmitAppointment($params);
             default:
                 throw new GorillaDashInvalidQueryException("Invalid query name: {$endpoint}");
         }

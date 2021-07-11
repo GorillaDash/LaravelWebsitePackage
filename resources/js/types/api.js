@@ -18,6 +18,7 @@ export default [
   'productSuppliers',
   'reviews',
   'organisation',
-  'submitEnquiry',
   'websiteRedirects',
+  'submitEnquiry',
+  'submitAppointment',
 ]

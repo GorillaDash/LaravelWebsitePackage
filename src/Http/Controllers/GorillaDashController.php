@@ -29,6 +29,7 @@ class GorillaDashController extends Controller
         try {
             $client = QueryFactory::create($query, $request->all());
             $data = $client->get();
+
             throw_if(count($data) === 0 || !is_array($data), GorillaDashEmptyResultException::class);
 
             return responder()->success($data)->respond(201);

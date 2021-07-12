@@ -21,4 +21,5 @@ export default [
   'websiteRedirects',
   'submitEnquiry',
   'submitAppointment',
+  'appointmentAvailableTime',
 ]

@@ -46,7 +46,7 @@ class SubmitEnquiry extends MutationAbstract
         foreach ((array)$this->getParam('fields') as $key => $item) {
             $fields[] = [
                 'name' => $key,
-                'value' => urlencode($item),
+                'value' => urldecode($item),
             ];
         }
 

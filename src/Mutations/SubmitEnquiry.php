@@ -36,6 +36,20 @@ class SubmitEnquiry extends MutationAbstract
             $lastName = $this->getParam('last_name');
         }
 
+        $fields = [
+            [
+                'name' => 'Message',
+                'value' => urldecode($this->getParam('message')),
+            ],
+        ];
+
+        foreach ((array)$this->getParam('fields') as $key => $item) {
+            $fields[] = [
+                'name' => $key,
+                'value' => urlencode($item),
+            ];
+        }
+
         $this->query->field('submitEnquiry')
             ->attributes([
                 'name' => $this->getParam('enquiry_name'),
@@ -45,12 +59,7 @@ class SubmitEnquiry extends MutationAbstract
                 'ip' => $this->getParam('ip'),
                 'mobile' => $this->getParam('mobile'),
                 'business_name' => $this->getParam('business_name'),
-                'fields' => [
-                    [
-                        'name' => 'Message',
-                        'value' => urldecode($this->getParam('message')),
-                    ],
-                ],
+                'fields' => $fields,
                 'tribes' => [
                     $this->getParam('tribe'),
                 ],

@@ -71,8 +71,13 @@
     },
     methods: {
       async fetch() {
-        this.results = await this.$gorilladash.query('products', this.params)
-        this.$emit('fetched')
+        try {
+          this.results = await this.$gorilladash.query('products', this.params)
+        } catch (e) {
+          this.results = [];
+        } finally {
+          this.$emit('fetched');
+        }
       }
     }
   }

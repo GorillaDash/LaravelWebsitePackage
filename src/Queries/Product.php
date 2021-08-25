@@ -102,10 +102,6 @@ class Product extends QueryAbstract
             $this->setSlug($slug);
         }
 
-        if ($inventoryTribeSlug = $this->getParam('inventoryTribeSlug')) {
-            $this->query->products->attribute('inventory_tribe_slug', $inventoryTribeSlug);
-        }
-
         if ($onlyShop = $this->getParam('onlyShop')) {
             $this->setOnlyShop($onlyShop);
         }
@@ -222,10 +218,12 @@ class Product extends QueryAbstract
                 $this->query->products->inventories->customData->fields('name', 'type', 'value');
 
                 if ($tribeSlug = data_get($decode, 'tribe_slug')) {
+                    $this->query->products->attribute('inventory_tribe_slug', $tribeSlug);
                     $this->query->products->inventories->attribute('tribe_slug', $tribeSlug);
                 }
 
                 if ($tribeId = data_get($decode, 'tribe_id')) {
+                    $this->query->products->attribute('inventory_tribe_id', (int)$tribeId);
                     $this->query->products->inventories->attribute('tribe_id', (int)$tribeId);
                 }
 

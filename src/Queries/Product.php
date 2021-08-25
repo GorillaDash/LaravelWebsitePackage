@@ -102,6 +102,10 @@ class Product extends QueryAbstract
             $this->setSlug($slug);
         }
 
+        if ($inventoryTribeSlug = $this->getParam('inventoryTribeSlug')) {
+            $this->query->products->attribute('inventory_tribe_slug', $inventoryTribeSlug);
+        }
+
         if ($onlyShop = $this->getParam('onlyShop')) {
             $this->setOnlyShop($onlyShop);
         }

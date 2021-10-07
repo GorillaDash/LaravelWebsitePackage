@@ -129,6 +129,10 @@ class Tribe extends QueryAbstract
         if ($this->getParam('includeTeamMembers')) {
             $this->includeTeamMembers();
         }
+
+        if ($this->getParam('includeOurWorks')) {
+            $this->includeOurWorks($this->getParam('ourWorkSlug'));
+        }
     }
 
     /**
@@ -156,5 +160,28 @@ class Tribe extends QueryAbstract
             'role',
             'avatar'
         );
+    }
+
+    /**
+     *
+     */
+    public function includeOurWorks($slug = null)
+    {
+        $this->query->tribes->fields('ourWorks');
+        $this->query->tribes->ourWorks->fields(
+            'heading',
+            'sub_heading',
+            'meta_title',
+            'meta_description',
+            'author',
+            'article',
+            'slug',
+            'media_collection',
+        );
+        if ($slug) {
+            $this->query->tribes->ourWorks->attribute('slug', $slug);
+        }
+        $this->query->tribes->ourWorks->media_collection->fields('name', 'description', 'media');
+        $this->query->tribes->ourWorks->media_collection->media->fields(MediaSizeType::MEDIA_SIZES);
     }
 }

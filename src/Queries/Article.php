@@ -46,5 +46,28 @@ class Article extends QueryAbstract
      */
     protected function applyRequestParams(): void
     {
+        if ($slug = $this->getParam('slug')) {
+            $this->setSlug($slug);
+        }
+
+        if ($status = $this->getParam('status')) {
+            $this->setStatus($status);
+        }
+    }
+
+    /**
+     * @param $slug
+     */
+    protected function setSlug($slug)
+    {
+        $this->query->articles->attribute('slug', $slug);
+    }
+
+    /**
+     * @param $slug
+     */
+    protected function setStatus($status)
+    {
+        $this->query->articles->attribute('status', $status);
     }
 }

@@ -30,6 +30,7 @@ class Article extends QueryAbstract
             'author',
             'slug',
             'abstract',
+            'article',
             'media_collection'
         );
         $this->query->articles->media_collection->fields(

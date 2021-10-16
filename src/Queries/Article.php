@@ -3,6 +3,7 @@
 namespace GorillaDash\LaravelWebsite\Queries;
 
 use GorillaDash\LaravelWebsite\Types\MediaSizeType;
+use Illuminate\Support\Arr;
 
 /**
  * Class Article
@@ -54,6 +55,10 @@ class Article extends QueryAbstract
         if ($status = $this->getParam('status')) {
             $this->setStatus($status);
         }
+
+        if ($categories = $this->getParam('categories')) {
+            $this->setCategories($categories);
+        }
     }
 
     /**
@@ -65,10 +70,18 @@ class Article extends QueryAbstract
     }
 
     /**
-     * @param $slug
+     * @param $status
      */
     protected function setStatus($status)
     {
         $this->query->articles->attribute('status', $status);
+    }
+
+    /**
+     * @param $categories
+     */
+    private function setCategories($categories)
+    {
+        $this->query->articles->attribute('categories', Arr::wrap($categories));
     }
 }

@@ -93,6 +93,10 @@ class WebsitePage extends QueryAbstract
         if ($this->getParam('includeRelatedProducts')) {
             $this->includeRelatedProducts();
         }
+
+        if ($this->getParam('includeTribes')) {
+            $this->includeTribes();
+        }
     }
 
     /**
@@ -166,6 +170,48 @@ class WebsitePage extends QueryAbstract
             'name',
             'type',
             'value'
+        );
+    }
+
+    /**
+     *
+     */
+    private function includeTribes()
+    {
+        $this->query->websitePages->fields(['tribes']);
+        $this->query->websitePages->tribes->fields(
+            'name',
+            'country',
+            'postal_code',
+            'state',
+            'locality',
+            'address_1',
+            'address_2',
+            'latitude',
+            'longitude',
+            'main_telephone',
+            'slug',
+            'heading',
+            'sub_heading',
+            'caption',
+            'page_heading',
+            'page_sub_heading',
+            'introduction_bold',
+            'introduction',
+            'answer_number',
+            'organic_number',
+            'paid_number',
+            'tracking_code',
+            'introduction_team',
+            'status',
+            'meta_title',
+            'meta_description',
+            'opening_hours',
+            'opening_hours_array',
+            'show_opening_hours',
+            'google_place_id',
+            'paid_cid',
+            'organic_cid'
         );
     }
 }

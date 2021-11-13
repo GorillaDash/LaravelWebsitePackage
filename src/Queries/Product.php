@@ -228,6 +228,7 @@ class Product extends QueryAbstract
                 }
 
                 if ($id = data_get($decode, 'id')) {
+                    $this->query->products->attribute('inventory_id', (int)$id);
                     $this->query->products->inventories->attribute('id', (int)$id);
                 }
             }

@@ -48,6 +48,12 @@
           return false;
         },
       },
+      includeTribeTypes: {
+        type: Boolean,
+        default() {
+          return false;
+        },
+      },
     },
     data() {
       return {
@@ -63,6 +69,7 @@
           includeContents: this.includeContents,
           includeMedia: this.includeMedia,
           includeTeamMembers: this.includeTeamMembers,
+          includeTribeTypes: this.includeTribeTypes,
         }
       }
     },

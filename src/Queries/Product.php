@@ -214,7 +214,7 @@ class Product extends QueryAbstract
             $decode = Json::decode($includeInventory, true);
             if (\count($decode) > 0) {
                 $this->query->products->fields('inventories');
-                $this->query->products->inventories->fields('unit_price', 'quantity', 'variants', 'id', 'customData');
+                $this->query->products->inventories->fields('unit_price', 'quantity', 'variants', 'id', 'customData', 'friendly_name');
                 $this->query->products->inventories->customData->fields('name', 'type', 'value');
 
                 if ($tribeSlug = data_get($decode, 'tribe_slug')) {

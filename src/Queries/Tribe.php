@@ -56,7 +56,8 @@ class Tribe extends QueryAbstract
             'show_opening_hours',
             'google_place_id',
             'paid_cid',
-            'organic_cid'
+            'organic_cid',
+            'enable_inventory'
         );
     }
 
